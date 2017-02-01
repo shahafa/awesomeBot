@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon --harmony-async-await app.js",
-    "start": "node --harmony-async-await app.js",
+    "start": "node app.js",
     "lint": "./node_modules/eslint/bin/eslint.js ."
   },
   "devDependencies": {
