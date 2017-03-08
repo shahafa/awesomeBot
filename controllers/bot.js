@@ -34,16 +34,7 @@ function userMessageReceived(req, res) {
   res.sendStatus(200);
 }
 
-function userEnteredLocation(req, res) {
-  const data = req.body;
-
-  console.log('location entered');
-
-  res.sendStatus(200);
-}
-
 module.exports = {
   validateToken,
   userMessageReceived,
-  userEnteredLocation,
 };

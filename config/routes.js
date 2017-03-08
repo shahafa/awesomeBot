@@ -1,4 +1,5 @@
 const botController = require('../controllers/bot');
+const locationsController = require('../controllers/locations');
 
 function routesConfig(app) {
   app.use('/test', (req, res) =>
@@ -8,7 +9,10 @@ function routesConfig(app) {
 
   app.get('/webhook', botController.validateToken);
   app.post('/webhook', botController.userMessageReceived);
-  app.post('/locationEntered', botController.userEnteredLocation);
+
+  app.get('/locations', locationsController.getLocations);
+  app.get('/addLocation', locationsController.addLocations);
+  app.post('/locationEntered', locationsController.userEnteredLocation);
 
   console.log('Routes configured successfully');
 }
