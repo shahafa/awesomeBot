@@ -11,8 +11,8 @@ function routesConfig(app) {
   app.post('/webhook', botController.userMessageReceived);
 
   app.get('/locations', locationsController.getLocations);
-  app.get('/addLocation', locationsController.addLocations);
-  app.post('/locationEntered', locationsController.userEnteredLocation);
+  app.post('/addLocation', locationsController.addLocation);
+  app.post('/userEnteredLocation', locationsController.userEnteredLocation);
 
   console.log('Routes configured successfully');
 }

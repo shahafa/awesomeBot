@@ -1,8 +1,8 @@
-const Location = require('../models/Location');
+const Locations = require('../models/Location');
 const { sendTextMessage } = require('../utils/messengar');
 
 async function getLocations(req, res) {
-  const locations = await Location.getLocations();
+  const locations = await Locations.getAll();
 
   return res.json({
     status: 'success',
@@ -13,7 +13,7 @@ async function getLocations(req, res) {
 }
 
 async function addLocation(req, res) {
-  await Location.add(req.body.location);
+  await Locations.add(req.body.location);
 
   return res.json({
     status: 'success',
@@ -23,12 +23,11 @@ async function addLocation(req, res) {
   });
 }
 
-function userEnteredLocation(req, res) {
-  const data = req.body;
+async function userEnteredLocation(req, res) {
+  const locationId = req.body.locationId;
+  const enteredLocation = await Locations.get(locationId);
 
-  console.log('location entered');
-
-  sendTextMessage();
+  sendTextMessage(`Welcome to ${enteredLocation.name}`);
   res.sendStatus(200);
 }
 
@@ -37,3 +36,4 @@ module.exports = {
   addLocation,
   userEnteredLocation,
 };
+

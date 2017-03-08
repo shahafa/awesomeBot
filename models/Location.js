@@ -3,6 +3,10 @@
 
 const mongoose = require('mongoose');
 
+// Temporary fix to suppress false DeprecationWarning
+// https://github.com/Automattic/mongoose/issues/4951
+mongoose.Promise = global.Promise;
+
 const LocationSchema = new mongoose.Schema({
   id: { type: String, required: true, index: { unique: true } },
   name: { type: String, required: true },
@@ -21,13 +25,22 @@ LocationSchema.statics.add = async function(location) {
   return newLocation;
 };
 
-LocationSchema.statics.getLocations = async function() {
-  const filters = await this.find().exec();
-  if (!filters) {
+LocationSchema.statics.get = async function(locationId) {
+  const location = await this.findOne({ id: locationId }).exec();
+  if (!location) {
     return false;
   }
 
-  return filters;
+  return location;
+};
+
+LocationSchema.statics.getAll = async function() {
+  const locations = await this.find().exec();
+  if (!locations) {
+    return false;
+  }
+
+  return locations;
 };
 
 module.exports = mongoose.model('Location', LocationSchema);
