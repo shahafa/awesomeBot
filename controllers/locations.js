@@ -1,5 +1,4 @@
 const Locations = require('../models/Location');
-const { sendTextMessage } = require('../utils/messengar');
 
 async function getLocations(req, res) {
   const locations = await Locations.getAll();
@@ -27,7 +26,7 @@ async function userEnteredLocation(req, res) {
   const locationId = req.body.locationId;
   const enteredLocation = await Locations.get(locationId);
 
-  sendTextMessage(`Welcome to ${enteredLocation.name}`);
+  // sendTextMessage(`Welcome to ${enteredLocation.name}`);
   res.sendStatus(200);
 }
 

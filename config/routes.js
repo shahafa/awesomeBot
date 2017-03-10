@@ -1,14 +1,9 @@
-const botController = require('../controllers/bot');
+const bot = require('../utils/MessengerBot');
 const locationsController = require('../controllers/locations');
 
 function routesConfig(app) {
-  app.use('/test', (req, res) =>
-    res.json({
-      status: 'success',
-    }));
-
-  app.get('/webhook', botController.validateToken);
-  app.post('/webhook', botController.userMessageReceived);
+  app.get('/webhook', bot.verifyToken.bind(bot));
+  app.post('/webhook', bot.handleMessage.bind(bot));
 
   app.get('/locations', locationsController.getLocations);
   app.post('/addLocation', locationsController.addLocation);
