@@ -28,7 +28,7 @@ async function userEnteredLocation(req, res) {
   const locationId = req.body.locationId;
   const enteredLocation = await Locations.get(locationId);
 
-  botSendMessage(userId, `Welcome to ${enteredLocation.name}`);
+  botSendMessage(userId, { text: `Welcome to ${enteredLocation.name}` });
   res.sendStatus(200);
 }
 
