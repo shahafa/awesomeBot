@@ -1,4 +1,5 @@
 const Locations = require('../models/Location');
+const { botSendMessage } = require('../bot');
 
 async function getLocations(req, res) {
   const locations = await Locations.getAll();
@@ -23,10 +24,11 @@ async function addLocation(req, res) {
 }
 
 async function userEnteredLocation(req, res) {
+  const userId = req.body.userId;
   const locationId = req.body.locationId;
   const enteredLocation = await Locations.get(locationId);
 
-  // sendTextMessage(`Welcome to ${enteredLocation.name}`);
+  botSendMessage(userId, `Welcome to ${enteredLocation.name}`);
   res.sendStatus(200);
 }
 
