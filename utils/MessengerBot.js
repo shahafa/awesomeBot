@@ -39,8 +39,9 @@ class MessengerBot extends EventEmitter {
             this.emit('read', event);
           } else if (event.account_linking) {
             this.emit('accountLinked', event);
+          } else if (event.referral) {
+            this.emit('referral', event);
           }
-          // TODO handle refferel
         });
       });
 
