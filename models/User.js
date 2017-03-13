@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema({
   id: { type: String, required: true, index: { unique: true } },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
+  psid: { type: String, required: true, index: { unique: true } },
 });
 
 UserSchema.statics.add = async function(user) {

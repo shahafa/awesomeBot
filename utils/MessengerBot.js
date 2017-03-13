@@ -40,6 +40,7 @@ class MessengerBot extends EventEmitter {
           } else if (event.account_linking) {
             this.emit('accountLinked', event);
           }
+          // TODO handle refferel
         });
       });
 
@@ -62,6 +63,7 @@ class MessengerBot extends EventEmitter {
 
       return Promise.resolve(response);
     })
+
     .catch(error => Promise.reject(error));
   }
 
