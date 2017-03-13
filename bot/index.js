@@ -8,7 +8,7 @@ bot.on('postback', async (payload) => {
     const senderId = payload.sender.id;
     const referral = payload.postback.referral;
 
-    const user = await Users.get(senderId);
+    const user = await Users.getByPsid(senderId);
     if (user) {
       const text = `Hi ${user.firstName}, I'll text you when something interesting will come up ;)`;
       bot.sendMessage(senderId, { text });

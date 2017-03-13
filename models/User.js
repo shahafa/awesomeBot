@@ -26,6 +26,15 @@ UserSchema.statics.add = async function(user) {
   return newUser;
 };
 
+UserSchema.statics.getByPsid = async function(psid) {
+  const user = await this.findOne({ psid }).exec();
+  if (!user) {
+    return false;
+  }
+
+  return user;
+};
+
 UserSchema.statics.get = async function(userId) {
   const user = await this.findOne({ id: userId }).exec();
   if (!user) {
@@ -34,6 +43,5 @@ UserSchema.statics.get = async function(userId) {
 
   return user;
 };
-
 
 module.exports = mongoose.model('User', UserSchema);
